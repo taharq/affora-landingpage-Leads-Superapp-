@@ -1,9 +1,9 @@
- <!doctype html>
+<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Local Delivery | Deine genaue Adresse</title>
+  <title>Local Delivery | Deine digitale Adresse</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -16,7 +16,7 @@
       --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
     }
 
-    * { box-sizing: border-box; transition: all 0.3s ease; }
+    * { box-sizing: border-box; transition: all 0.2s ease-in-out; }
     body { 
       margin: 0; 
       font-family: 'Plus Jakarta Sans', sans-serif; 
@@ -28,66 +28,73 @@
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
     /* Navigation */
-    nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-weight: 800; font-size: 22px; letter-spacing: -1px; }
-    .lang-switcher { display: flex; gap: 5px; background: #eee; padding: 4px; border-radius: 10px; }
+    nav { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 800; font-size: 24px; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
+    .logo-dot { width: 12px; height: 12px; background: var(--primary); border-radius: 50%; }
+    
+    .lang-switcher { display: flex; gap: 4px; background: #eef2f6; padding: 4px; border-radius: 12px; }
     .lang-switcher button { 
-      border: none; background: transparent; padding: 6px 12px; 
-      border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13px;
+      border: none; background: transparent; padding: 8px 14px; 
+      border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; color: var(--gray);
     }
-    .lang-switcher button.active { background: var(--white); box-shadow: var(--shadow); }
+    .lang-switcher button.active { background: var(--white); color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
 
     /* Hero Section */
-    .hero { padding: 60px 0 40px; text-align: center; }
-    h1 { font-size: clamp(32px, 7vw, 52px); line-height: 1.1; margin-bottom: 20px; font-weight: 800; letter-spacing: -2px; }
-    .hero p { font-size: 19px; color: var(--gray); max-width: 750px; margin: 0 auto 40px; }
+    .hero { padding: 80px 0 60px; text-align: center; }
+    h1 { font-size: clamp(34px, 8vw, 60px); line-height: 1.05; margin-bottom: 24px; font-weight: 800; letter-spacing: -2px; color: var(--dark); }
+    .hero p { font-size: 20px; color: var(--gray); max-width: 720px; margin: 0 auto 48px; }
 
-    /* Form */
+    /* Modern Waitlist Form */
     .waitlist-card { 
-      background: var(--white); padding: 30px; border-radius: 24px; 
-      box-shadow: var(--shadow); max-width: 650px; margin: 0 auto;
-      border: 1px solid #f1f5f9;
+      background: var(--white); padding: 40px; border-radius: 32px; 
+      box-shadow: var(--shadow); max-width: 700px; margin: 0 auto;
+      border: 1px solid rgba(0,0,0,0.03);
     }
-    .wl-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; }
+    .wl-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 16px; }
     input { 
-      padding: 16px; border-radius: 12px; border: 1px solid #e2e8f0; 
-      font-size: 16px; width: 100%; outline: none;
+      padding: 18px 20px; border-radius: 16px; border: 1px solid #e2e8f0; 
+      font-size: 16px; width: 100%; outline: none; background: #fcfdfe;
     }
-    input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+    input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-soft); }
     .btn { 
-      background: var(--primary); color: white; padding: 16px 28px; 
-      border-radius: 12px; font-weight: 700; border: none; cursor: pointer;
+      background: var(--primary); color: white; padding: 18px 32px; 
+      border-radius: 16px; font-weight: 700; border: none; cursor: pointer; font-size: 16px;
     }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(15, 122, 90, 0.3); }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15, 122, 90, 0.25); filter: brightness(1.1); }
 
     /* Features Grid */
-    section { padding: 60px 0; }
-    .section-title { text-align: center; margin-bottom: 40px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    section { padding: 100px 0; border-top: 1px solid #edf2f7; }
+    .section-title { text-align: center; margin-bottom: 60px; }
+    .section-title h2 { font-size: 36px; font-weight: 800; letter-spacing: -1px; }
+    
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
     
     .card { 
-      background: var(--white); padding: 28px; border-radius: 20px; 
+      background: var(--white); padding: 35px; border-radius: 24px; 
       border: 1px solid #f1f5f9; position: relative;
-      display: flex; flex-direction: column;
     }
-    .card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: var(--shadow); }
-    .card h3 { margin-top: 0; font-size: 20px; color: var(--dark); }
-    .card p { font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px; }
-    .card ul { padding-left: 18px; color: var(--gray); font-size: 15px; margin: 0; }
-    .card li { margin-bottom: 8px; }
+    .card:hover { border-color: var(--primary); transform: translateY(-6px); box-shadow: var(--shadow); }
+    .card .icon { font-size: 32px; margin-bottom: 20px; display: block; }
+    .card h3 { margin: 0 0 12px; font-size: 22px; }
+    .card p.badge { display: inline-block; font-size: 12px; background: var(--primary-soft); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; }
+    .card ul { padding-left: 20px; color: var(--gray); font-size: 15px; margin: 0; }
+    .card li { margin-bottom: 12px; }
 
-    /* Trust & Privacy */
+    /* Trust Section */
     .trust-banner { 
-      background: var(--primary-soft); padding: 35px; border-radius: 24px; 
-      text-align: center; margin: 40px 0; border: 1px dashed var(--primary);
+      background: #111; color: white; padding: 60px 40px; border-radius: 32px; 
+      text-align: center; margin: 40px 0; position: relative; overflow: hidden;
     }
+    .trust-banner h3 { color: var(--primary); margin-top: 0; }
+    .trust-banner p { opacity: 0.8; max-width: 600px; margin: 0 auto; }
 
-    footer { padding: 40px 0; text-align: center; color: var(--gray); font-size: 14px; }
+    footer { padding: 80px 0 40px; text-align: center; color: var(--gray); font-size: 14px; border-top: 1px solid #edf2f7; }
+    .germany-flag { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; font-weight: 600; color: var(--dark); }
 
-    @media (max-width: 768px) {
+    @media (max-width: 850px) {
       .wl-row { grid-template-columns: 1fr; }
+      .hero { padding: 50px 0; }
       .grid { grid-template-columns: 1fr; }
-      .hero { padding: 40px 0; }
     }
   </style>
 </head>
@@ -95,117 +102,131 @@
 
   <div class="container">
     <nav>
-      <div class="logo">DELIVERY<span style="color:var(--primary)">APP</span></div>
+      <div class="logo"><div class="logo-dot"></div> DELIVERY<span style="color:var(--primary)">APP</span></div>
       <div class="lang-switcher">
-        <button onclick="setLang('en')" id="btn-en">EN</button>
-        <button onclick="setLang('sw')" id="btn-sw">SW</button>
-        <button onclick="setLang('de')" id="btn-de" class="active">DE</button>
+        <button onclick="setLang('en')" id="btn-en">English</button>
+        <button onclick="setLang('sw')" id="btn-sw">Swahili</button>
+        <button onclick="setLang('de')" id="btn-de" class="active">Deutsch</button>
       </div>
     </nav>
 
     <header class="hero">
       <h1 data-i18n="title">Jeder bekommt eine genaue Adresse.</h1>
-      <p data-i18n="lead">Schluss mit dem Suchen. Wir digitalisieren Lieferorte für Käufer, Shops und Fahrer – sicher, präzise und einfach über eine App.</p>
+      <p data-i18n="lead">Schluss mit unklaren Lieferorten. Wir geben jedem Nutzer, Shop und Fahrer eine präzise digitale Identität für reibungslose Logistik.</p>
       
       <div class="waitlist-card">
         <form id="waitlistForm">
           <div class="wl-row">
-            <input type="text" name="name" placeholder="Dein Name" required />
-            <input type="email" name="email" placeholder="Email Adresse" required />
-            <button class="btn" type="submit" data-i18n="cta">Warteliste beitreten</button>
+            <input type="text" name="name" placeholder="Vollständiger Name" required />
+            <input type="email" name="email" placeholder="E-Mail-Adresse" required />
+            <button class="btn" type="submit" data-i18n="cta">Jetzt beitreten</button>
           </div>
         </form>
-        <div id="wl-msg" style="margin-top:15px; font-weight:600; color: var(--primary)"></div>
+        <div id="wl-msg" style="margin-top:20px; font-weight:600; color: var(--primary)"></div>
       </div>
     </header>
 
     <section id="roles">
       <div class="section-title">
-        <h2 data-i18n="roles_title">Eine Lösung für alle Beteiligten</h2>
+        <h2 data-i18n="roles_title">Das Ökosystem für alle</h2>
       </div>
       <div class="grid">
         <div class="card">
-          <h3 data-i18n="customer">🧑‍💼 Kunde</h3>
-          <p>Endlich eine digitale Adresse für dich.</p>
+          <span class="icon">🧑‍💼</span>
+          <p class="badge">Kunde</p>
+          <h3 data-i18n="customer">Deine Adresse</h3>
           <ul>
-            <li>Erhalte exakte Lieferungen ohne langes Erklären</li>
-            <li>Bestelle bei lokalen Shops direkt über die App</li>
-            <li>Teile deinen Standort präzise mit Familie & Freunden</li>
-            <li>Verfolge Pakete live bis an deine Tür</li>
+            <li>Eigene exakte Adresse erhalten & teilen</li>
+            <li>Direkt bei lokalen Shops bestellen</li>
+            <li>Live-Tracking deiner Lieferungen</li>
+            <li>Kein Erklären des Weges mehr nötig</li>
           </ul>
         </div>
 
         <div class="card">
-          <h3 data-i18n="driver">📦 Fahrer</h3>
-          <p>Verdiene mehr durch Effizienz.</p>
+          <span class="icon">📦</span>
+          <p class="badge">Fahrer</p>
+          <h3 data-i18n="driver">Effizienz</h3>
           <ul>
-            <li>Keine Zeitverschwendung beim Suchen</li>
-            <li>Mehr Lieferungen pro Stunde statt Warten</li>
-            <li>Direkte Navigation punktgenau zum Ziel</li>
+            <li>Navigation punktgenau zum Ziel</li>
+            <li>Mehr Aufträge in kürzerer Zeit</li>
+            <li>Keine Wartezeiten durch Sucherei</li>
           </ul>
         </div>
 
         <div class="card">
-          <h3 data-i18n="seller">🏪 Shops</h3>
-          <p>Werde endlich von jedem gefunden.</p>
+          <span class="icon">🏪</span>
+          <p class="badge">Shop</p>
+          <h3 data-i18n="seller">Sichtbarkeit</h3>
           <ul>
-            <li>Vergib eine exakte digitale Adresse für deinen Shop</li>
-            <li>Reduziere Rückfragen und Telefon-Erklärungen</li>
-            <li>Gewinne Sichtbarkeit für neue Kunden im Umkreis</li>
+            <li>Digitale Adresse für deinen Standort</li>
+            <li>Automatisierte Abwicklung von Orders</li>
+            <li>Neue Kunden im direkten Umkreis</li>
           </ul>
         </div>
 
         <div class="card">
-          <h3 data-i18n="hub">🏢 Hub-Betreiber</h3>
-          <p>Verdiene an deinem Standort mit.</p>
+          <span class="icon">🏢</span>
+          <p class="badge">Hub</p>
+          <h3 data-i18n="hub">Provision</h3>
           <ul>
-            <li>Provision pro gescanntem Paket erhalten</li>
-            <li>Optimale Organisation durch klare Zuordnung</li>
-            <li>Schnelle Übergabe an Fahrer und Kunden</li>
+            <li>Geld verdienen pro Paket-Scan</li>
+            <li>Einfache Lager-Organisation</li>
+            <li>Zentrale für lokale Lieferungen</li>
           </ul>
         </div>
       </div>
     </section>
 
     <div class="trust-banner">
-      <strong>Sicherheit & Privatsphäre:</strong> 
-      <p>Deine Adresse ist privat. Daten werden auf deutschen Servern verschlüsselt und niemals mit Behörden geteilt. 🇩🇪</p>
+      <h3 data-i18n="trust_title">Maximale Privatsphäre</h3>
+      <p>Deine Daten sind bei uns sicher. Wir teilen keine Informationen mit Behörden. Alles wird nach strengsten Regeln auf deutschen Servern verschlüsselt. 🛡️</p>
     </div>
 
     <footer>
-      <p>&copy; 2026 Deutsches App-Unternehmen. Deine Privatsphäre ist unser höchstes Gut.</p>
+      <p>&copy; 2026 Lokale Liefer-App. Alle Rechte vorbehalten.</p>
+      <div class="germany-flag">
+        <span>🇩🇪</span> Deutsches Unternehmen & Hosting
+      </div>
     </footer>
   </div>
 
   <script>
     let currentLang = 'de';
+    // Deine Google Sheets URL aus der Originaldatei
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyoTeMLlXXO3cNME2mjGnILCg-s5BXljgoSwR-CFeKBa5tPg0dJc7CCAyJTlGv7LN7E/exec";
 
     function setLang(l) {
       currentLang = l;
       document.querySelectorAll('.lang-switcher button').forEach(b => b.classList.remove('active'));
       document.getElementById('btn-' + l).classList.add('active');
+      // Hier können weitere Übersetzungs-Logiken (t-Objekt) ergänzt werden
     }
 
     document.getElementById('waitlistForm').addEventListener('submit', async function(e){
       e.preventDefault();
       const msg = document.getElementById('wl-msg');
-      msg.innerText = 'Wird gesendet...';
+      msg.innerText = 'Daten werden sicher übertragen...';
 
       try {
+        // Fetch-Aufruf an dein Google Apps Script
         await fetch(SCRIPT_URL, {
           method: 'POST',
-          mode: 'no-cors',
+          mode: 'no-cors', 
           body: JSON.stringify({ 
             name: this.name.value, 
             email: this.email.value, 
-            language: currentLang 
+            language: currentLang,
+            timestamp: new Date().toISOString()
           })
         });
-        msg.innerText = 'Danke! Du stehst erfolgreich auf der Warteliste.';
+        
+        msg.innerText = 'Erfolgreich! Willkommen auf der Warteliste.';
+        msg.style.color = 'var(--primary)';
         this.reset();
       } catch(err) {
-        msg.innerText = 'Fehler. Bitte versuche es später erneut.';
+        msg.innerText = 'Verbindungsfehler. Bitte versuche es erneut.';
+        msg.style.color = '#e53e3e';
       }
     });
   </script>
