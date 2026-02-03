@@ -1,189 +1,213 @@
-<!doctype html>
+ <!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Local Delivery. Made Simple.</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>Local Delivery | Deine genaue Adresse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#fafafa;color:#111}
-    .wrap{max-width:980px;margin:0 auto;padding:24px}
-
-    .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
-    .lang{display:flex;gap:8px}
-    .lang button{border:1px solid #ddd;background:#fff;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600}
-    .lang button.active{background:#111;color:#fff;border-color:#111}
-
-    header{padding:30px 0 10px}
-    h1{font-size:clamp(30px,6vw,48px);margin:0 0 14px;line-height:1.1}
-    p.lead{font-size:19px;color:#555;margin:0 0 26px}
-    .btn{display:inline-block;background:#0f7a5a;color:#fff;padding:14px 20px;border-radius:12px;text-decoration:none;font-weight:700;border:none;cursor:pointer}
-
-    .waitlist{margin-top:10px}
-    .wl-row{display:flex;gap:10px;flex-wrap:wrap}
-    .wl-row input{flex:1;min-width:180px;padding:14px 12px;border-radius:12px;border:1px solid #ddd;font-size:16px}
-    .wl-row input:focus{outline:none;border-color:#0f7a5a;box-shadow:0 0 0 3px rgba(15,122,90,0.15)}
-
-    section{padding:48px 0;border-top:1px solid #eee}
-    h2{font-size:28px;margin:0 0 16px}
-
-    ul{margin:10px 0 0 18px;color:#444;font-size:16px}
-
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
-    .step{padding:20px;border:1px solid #eee;border-radius:14px;text-align:center;background:#fff}
-
-    .roles{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:10px}
-    @media(max-width:760px){
-      .roles{grid-template-columns:1fr}
-      .steps{grid-template-columns:1fr}
+    :root {
+      --primary: #0f7a5a;
+      --primary-soft: #e7f3ef;
+      --dark: #1a1a1a;
+      --gray: #64748b;
+      --light: #f8fafc;
+      --white: #ffffff;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
     }
-    .card{padding:20px;border:1px solid #eee;border-radius:14px;background:#fff}
 
-    .trust{background:#fff;border:1px solid #eee;border-radius:14px;padding:22px;margin-top:30px}
+    * { box-sizing: border-box; transition: all 0.3s ease; }
+    body { 
+      margin: 0; 
+      font-family: 'Plus Jakarta Sans', sans-serif; 
+      background: var(--light); 
+      color: var(--dark); 
+      line-height: 1.6;
+    }
 
-    footer{padding:50px 0;color:#777;font-size:14px;text-align:center}
-    .flag{margin-top:10px;font-size:22px}
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navigation */
+    nav { padding: 20px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 800; font-size: 22px; letter-spacing: -1px; }
+    .lang-switcher { display: flex; gap: 5px; background: #eee; padding: 4px; border-radius: 10px; }
+    .lang-switcher button { 
+      border: none; background: transparent; padding: 6px 12px; 
+      border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13px;
+    }
+    .lang-switcher button.active { background: var(--white); box-shadow: var(--shadow); }
+
+    /* Hero Section */
+    .hero { padding: 60px 0 40px; text-align: center; }
+    h1 { font-size: clamp(32px, 7vw, 52px); line-height: 1.1; margin-bottom: 20px; font-weight: 800; letter-spacing: -2px; }
+    .hero p { font-size: 19px; color: var(--gray); max-width: 750px; margin: 0 auto 40px; }
+
+    /* Form */
+    .waitlist-card { 
+      background: var(--white); padding: 30px; border-radius: 24px; 
+      box-shadow: var(--shadow); max-width: 650px; margin: 0 auto;
+      border: 1px solid #f1f5f9;
+    }
+    .wl-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; }
+    input { 
+      padding: 16px; border-radius: 12px; border: 1px solid #e2e8f0; 
+      font-size: 16px; width: 100%; outline: none;
+    }
+    input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+    .btn { 
+      background: var(--primary); color: white; padding: 16px 28px; 
+      border-radius: 12px; font-weight: 700; border: none; cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(15, 122, 90, 0.3); }
+
+    /* Features Grid */
+    section { padding: 60px 0; }
+    .section-title { text-align: center; margin-bottom: 40px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    
+    .card { 
+      background: var(--white); padding: 28px; border-radius: 20px; 
+      border: 1px solid #f1f5f9; position: relative;
+      display: flex; flex-direction: column;
+    }
+    .card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: var(--shadow); }
+    .card h3 { margin-top: 0; font-size: 20px; color: var(--dark); }
+    .card p { font-size: 14px; color: var(--primary); font-weight: 600; margin-bottom: 12px; }
+    .card ul { padding-left: 18px; color: var(--gray); font-size: 15px; margin: 0; }
+    .card li { margin-bottom: 8px; }
+
+    /* Trust & Privacy */
+    .trust-banner { 
+      background: var(--primary-soft); padding: 35px; border-radius: 24px; 
+      text-align: center; margin: 40px 0; border: 1px dashed var(--primary);
+    }
+
+    footer { padding: 40px 0; text-align: center; color: var(--gray); font-size: 14px; }
+
+    @media (max-width: 768px) {
+      .wl-row { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .hero { padding: 40px 0; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
 
-    <div class="topbar">
-      <div style="font-weight:800">APP</div>
-      <div class="lang">
-        <button onclick="setLang('en')" id="btn-en">English</button>
-        <button onclick="setLang('sw')" id="btn-sw">Swahili</button>
-        <button onclick="setLang('de')" id="btn-de" class="active">Deutsch</button>
+  <div class="container">
+    <nav>
+      <div class="logo">DELIVERY<span style="color:var(--primary)">APP</span></div>
+      <div class="lang-switcher">
+        <button onclick="setLang('en')" id="btn-en">EN</button>
+        <button onclick="setLang('sw')" id="btn-sw">SW</button>
+        <button onclick="setLang('de')" id="btn-de" class="active">DE</button>
       </div>
-    </div>
+    </nav>
 
-    <header>
+    <header class="hero">
       <h1 data-i18n="title">Jeder bekommt eine genaue Adresse.</h1>
-      <p class="lead" data-i18n="lead">Mit dieser App haben Käufer, Verkäufer und Hubs endlich eine präzise, digitale Adresse. Das Problem unklarer Lieferorte gehört der Vergangenheit an.</p>
-      <form class="waitlist" id="waitlistForm">
-      <div class="wl-row">
-        <input type="text" name="name" placeholder="Name" data-i18n-placeholder="name_ph" required />
-        <input type="email" name="email" placeholder="Email" data-i18n-placeholder="email_ph" required />
-        <button class="btn" type="submit" data-i18n="cta">Zur Warteliste</button>
+      <p data-i18n="lead">Schluss mit dem Suchen. Wir digitalisieren Lieferorte für Käufer, Shops und Fahrer – sicher, präzise und einfach über eine App.</p>
+      
+      <div class="waitlist-card">
+        <form id="waitlistForm">
+          <div class="wl-row">
+            <input type="text" name="name" placeholder="Dein Name" required />
+            <input type="email" name="email" placeholder="Email Adresse" required />
+            <button class="btn" type="submit" data-i18n="cta">Warteliste beitreten</button>
+          </div>
+        </form>
+        <div id="wl-msg" style="margin-top:15px; font-weight:600; color: var(--primary)"></div>
       </div>
-    </form>
-    <div id="wl-msg" style="margin-top:10px;font-weight:600"></div>
     </header>
 
-    <section>
-      <h2 data-i18n="problems_title">Bisher war das das Problem</h2>
-      <ul>
-        <li data-i18n="p1">Niemand hat eine wirklich genaue Adresse</li>
-        <li data-i18n="p2">Fahrer verlieren Zeit beim Suchen</li>
-        <li data-i18n="p3">Ständige Anrufe zwischen Kunden und Shops</li>
-        <li data-i18n="p4">Teure Lieferungen durch Umwege</li>
-        <li data-i18n="p5">Unsicherheit bei Übergaben</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2 data-i18n="solution_title">Jetzt ist es einfach</h2>
-      <div class="steps">
-        <div class="step" data-i18n="s1">1. Jeder Nutzer erhält eine exakte Adresse in der App</div>
-        <div class="step" data-i18n="s2">2. Verkäufer oder Hub nutzen diese Adresse für Übergaben</div>
-        <div class="step" data-i18n="s3">3. Fahrer liefern ohne Suchen direkt zum Ziel</div>
+    <section id="roles">
+      <div class="section-title">
+        <h2 data-i18n="roles_title">Eine Lösung für alle Beteiligten</h2>
       </div>
-    </section>
+      <div class="grid">
+        <div class="card">
+          <h3 data-i18n="customer">🧑‍💼 Kunde</h3>
+          <p>Endlich eine digitale Adresse für dich.</p>
+          <ul>
+            <li>Erhalte exakte Lieferungen ohne langes Erklären</li>
+            <li>Bestelle bei lokalen Shops direkt über die App</li>
+            <li>Teile deinen Standort präzise mit Familie & Freunden</li>
+            <li>Verfolge Pakete live bis an deine Tür</li>
+          </ul>
+        </div>
 
-    <section>
-      <h2 data-i18n="roles_title">Für wen ist die App?</h2>
-      <div class="roles">
         <div class="card">
-          <h3 data-i18n="buyer">Käufer</h3>
+          <h3 data-i18n="driver">📦 Fahrer</h3>
+          <p>Verdiene mehr durch Effizienz.</p>
           <ul>
-            <li data-i18n="b1">Eigene genaue Adresse erhalten</li>
-            <li data-i18n="b2">Schnelle und sichere Lieferung</li>
-            <li data-i18n="b3">Kein Erklären des Wohnorts mehr nötig</li>
+            <li>Keine Zeitverschwendung beim Suchen</li>
+            <li>Mehr Lieferungen pro Stunde statt Warten</li>
+            <li>Direkte Navigation punktgenau zum Ziel</li>
           </ul>
         </div>
+
         <div class="card">
-          <h3 data-i18n="seller">Verkäufer</h3>
+          <h3 data-i18n="seller">🏪 Shops</h3>
+          <p>Werde endlich von jedem gefunden.</p>
           <ul>
-            <li data-i18n="sll1">Kunden eindeutig finden</li>
-            <li data-i18n="sll2">Weniger Rückfragen und Anrufe</li>
-            <li data-i18n="sll3">Übergaben mit klarer Adresse</li>
+            <li>Vergib eine exakte digitale Adresse für deinen Shop</li>
+            <li>Reduziere Rückfragen und Telefon-Erklärungen</li>
+            <li>Gewinne Sichtbarkeit für neue Kunden im Umkreis</li>
           </ul>
         </div>
+
         <div class="card">
-          <h3 data-i18n="driver">Fahrer</h3>
+          <h3 data-i18n="hub">🏢 Hub-Betreiber</h3>
+          <p>Verdiene an deinem Standort mit.</p>
           <ul>
-            <li data-i18n="d1">Keine Zeit mehr mit Suchen verlieren</li>
-            <li data-i18n="d2">Direkte Navigation zur Zieladresse</li>
-            <li data-i18n="d3">Mehr Lieferungen pro Tag möglich</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3 data-i18n="hub">Hub‑Betreiber</h3>
-          <ul>
-            <li data-i18n="h1">Klare Zuordnung jeder Sendung</li>
-            <li data-i18n="h2">Reibungslose Weitergabe an Fahrer</li>
-            <li data-i18n="h3">Strukturierte Abläufe</li>
+            <li>Provision pro gescanntem Paket erhalten</li>
+            <li>Optimale Organisation durch klare Zuordnung</li>
+            <li>Schnelle Übergabe an Fahrer und Kunden</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <div class="trust" data-i18n="trust">
-      Deine Adresse ist sicher. Sie wird nicht mit Behörden oder Regierungen geteilt. Alle Daten liegen auf Servern in Deutschland unter einem deutschen Unternehmen und strengen Datenschutzregeln.
+    <div class="trust-banner">
+      <strong>Sicherheit & Privatsphäre:</strong> 
+      <p>Deine Adresse ist privat. Daten werden auf deutschen Servern verschlüsselt und niemals mit Behörden geteilt. 🇩🇪</p>
     </div>
 
-    <footer data-i18n="footer">
-      Diese Seite erklärt nur die Nutzung der App — keine technischen Details.
-      <div class="flag">🇩🇪 Deutsches Unternehmen</div>
+    <footer>
+      <p>&copy; 2026 Deutsches App-Unternehmen. Deine Privatsphäre ist unser höchstes Gut.</p>
     </footer>
-
   </div>
 
   <script>
     let currentLang = 'de';
-    const t = { /* unverändert, bleibt wie vorher */ };
-
-    function setLang(l){
-      currentLang = l;
-      document.querySelectorAll('[data-i18n]').forEach(el=>{
-        const key = el.getAttribute('data-i18n');
-        if(t[l][key]) el.innerText = t[l][key];
-      });
-      document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
-        const key = el.getAttribute('data-i18n-placeholder');
-        if(t[l][key]) el.placeholder = t[l][key];
-      });
-      document.querySelectorAll('.lang button').forEach(b=>b.classList.remove('active'));
-      document.getElementById('btn-'+l).classList.add('active');
-      document.documentElement.lang = l;
-    }
-
-    // 🔗 Verbindung zu deinem Google Sheet
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyoTeMLlXXO3cNME2mjGnILCg-s5BXljgoSwR-CFeKBa5tPg0dJc7CCAyJTlGv7LN7E/exec";
+
+    function setLang(l) {
+      currentLang = l;
+      document.querySelectorAll('.lang-switcher button').forEach(b => b.classList.remove('active'));
+      document.getElementById('btn-' + l).classList.add('active');
+    }
 
     document.getElementById('waitlistForm').addEventListener('submit', async function(e){
       e.preventDefault();
-
-      const name = this.name.value.trim();
-      const email = this.email.value.trim();
-
       const msg = document.getElementById('wl-msg');
-      msg.innerText = 'Sending...';
+      msg.innerText = 'Wird gesendet...';
 
       try {
         await fetch(SCRIPT_URL, {
           method: 'POST',
-          body: JSON.stringify({ name, email, language: currentLang })
+          mode: 'no-cors',
+          body: JSON.stringify({ 
+            name: this.name.value, 
+            email: this.email.value, 
+            language: currentLang 
+          })
         });
-
-        msg.innerText = 'Danke! Du stehst auf der Warteliste.';
+        msg.innerText = 'Danke! Du stehst erfolgreich auf der Warteliste.';
         this.reset();
       } catch(err) {
-        msg.innerText = 'Fehler. Bitte erneut versuchen.';
+        msg.innerText = 'Fehler. Bitte versuche es später erneut.';
       }
     });
   </script>
-
 </body>
 </html>
