@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Local Delivery | Deine digitale Adresse</title>
+  <title>DeliveryApp | Precision Addressing</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -15,87 +15,35 @@
       --white: #ffffff;
       --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
     }
-
     * { box-sizing: border-box; transition: all 0.2s ease-in-out; }
-    body { 
-      margin: 0; 
-      font-family: 'Plus Jakarta Sans', sans-serif; 
-      background: var(--light); 
-      color: var(--dark); 
-      line-height: 1.6;
-    }
-
+    body { margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; background: var(--light); color: var(--dark); line-height: 1.6; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-
-    /* Navigation */
     nav { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; }
     .logo { font-weight: 800; font-size: 24px; letter-spacing: -1px; display: flex; align-items: center; gap: 8px; }
     .logo-dot { width: 12px; height: 12px; background: var(--primary); border-radius: 50%; }
-    
     .lang-switcher { display: flex; gap: 4px; background: #eef2f6; padding: 4px; border-radius: 12px; }
-    .lang-switcher button { 
-      border: none; background: transparent; padding: 8px 14px; 
-      border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; color: var(--gray);
-    }
+    .lang-switcher button { border: none; background: transparent; padding: 8px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 13px; color: var(--gray); }
     .lang-switcher button.active { background: var(--white); color: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-
-    /* Hero Section */
     .hero { padding: 80px 0 60px; text-align: center; }
-    h1 { font-size: clamp(34px, 8vw, 60px); line-height: 1.05; margin-bottom: 24px; font-weight: 800; letter-spacing: -2px; color: var(--dark); }
+    h1 { font-size: clamp(34px, 8vw, 60px); line-height: 1.05; margin-bottom: 24px; font-weight: 800; letter-spacing: -2px; }
     .hero p { font-size: 20px; color: var(--gray); max-width: 720px; margin: 0 auto 48px; }
-
-    /* Modern Waitlist Form */
-    .waitlist-card { 
-      background: var(--white); padding: 40px; border-radius: 32px; 
-      box-shadow: var(--shadow); max-width: 700px; margin: 0 auto;
-      border: 1px solid rgba(0,0,0,0.03);
-    }
+    .waitlist-card { background: var(--white); padding: 40px; border-radius: 32px; box-shadow: var(--shadow); max-width: 700px; margin: 0 auto; border: 1px solid rgba(0,0,0,0.03); }
     .wl-row { display: grid; grid-template-columns: 1fr 1fr auto; gap: 16px; }
-    input { 
-      padding: 18px 20px; border-radius: 16px; border: 1px solid #e2e8f0; 
-      font-size: 16px; width: 100%; outline: none; background: #fcfdfe;
-    }
+    input { padding: 18px 20px; border-radius: 16px; border: 1px solid #e2e8f0; font-size: 16px; width: 100%; outline: none; background: #fcfdfe; }
     input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--primary-soft); }
-    .btn { 
-      background: var(--primary); color: white; padding: 18px 32px; 
-      border-radius: 16px; font-weight: 700; border: none; cursor: pointer; font-size: 16px;
-    }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15, 122, 90, 0.25); filter: brightness(1.1); }
-
-    /* Features Grid */
+    .btn { background: var(--primary); color: white; padding: 18px 32px; border-radius: 16px; font-weight: 700; border: none; cursor: pointer; font-size: 16px; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(15, 122, 90, 0.25); }
     section { padding: 100px 0; border-top: 1px solid #edf2f7; }
     .section-title { text-align: center; margin-bottom: 60px; }
-    .section-title h2 { font-size: 36px; font-weight: 800; letter-spacing: -1px; }
-    
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
-    
-    .card { 
-      background: var(--white); padding: 35px; border-radius: 24px; 
-      border: 1px solid #f1f5f9; position: relative;
-    }
-    .card:hover { border-color: var(--primary); transform: translateY(-6px); box-shadow: var(--shadow); }
-    .card .icon { font-size: 32px; margin-bottom: 20px; display: block; }
+    .card { background: var(--white); padding: 35px; border-radius: 24px; border: 1px solid #f1f5f9; }
     .card h3 { margin: 0 0 12px; font-size: 22px; }
-    .card p.badge { display: inline-block; font-size: 12px; background: var(--primary-soft); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; }
+    .badge { display: inline-block; font-size: 12px; background: var(--primary-soft); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; }
     .card ul { padding-left: 20px; color: var(--gray); font-size: 15px; margin: 0; }
     .card li { margin-bottom: 12px; }
-
-    /* Trust Section */
-    .trust-banner { 
-      background: #111; color: white; padding: 60px 40px; border-radius: 32px; 
-      text-align: center; margin: 40px 0; position: relative; overflow: hidden;
-    }
-    .trust-banner h3 { color: var(--primary); margin-top: 0; }
-    .trust-banner p { opacity: 0.8; max-width: 600px; margin: 0 auto; }
-
+    .trust-banner { background: #111; color: white; padding: 60px 40px; border-radius: 32px; text-align: center; margin: 40px 0; }
     footer { padding: 80px 0 40px; text-align: center; color: var(--gray); font-size: 14px; border-top: 1px solid #edf2f7; }
-    .germany-flag { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; font-weight: 600; color: var(--dark); }
-
-    @media (max-width: 850px) {
-      .wl-row { grid-template-columns: 1fr; }
-      .hero { padding: 50px 0; }
-      .grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 850px) { .wl-row { grid-template-columns: 1fr; } .grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -112,67 +60,57 @@
 
     <header class="hero">
       <h1 data-i18n="title">Jeder bekommt eine genaue Adresse.</h1>
-      <p data-i18n="lead">Schluss mit unklaren Lieferorten. Wir geben jedem Nutzer, Shop und Fahrer eine präzise digitale Identität für reibungslose Logistik.</p>
+      <p data-i18n="lead">Schluss mit unklaren Lieferorten. Wir geben jedem Nutzer, Shop und Fahrer eine präzise digitale Identität.</p>
       
       <div class="waitlist-card">
         <form id="waitlistForm">
           <div class="wl-row">
-            <input type="text" name="name" placeholder="Vollständiger Name" required />
-            <input type="email" name="email" placeholder="E-Mail-Adresse" required />
-            <button class="btn" type="submit" data-i18n="cta">Jetzt beitreten</button>
+            <input type="text" name="name" id="field-name" placeholder="Name" required />
+            <input type="email" name="email" id="field-email" placeholder="E-Mail" required />
+            <button class="btn" type="submit" id="btn-submit" data-i18n="cta">Jetzt beitreten</button>
           </div>
         </form>
-        <div id="wl-msg" style="margin-top:20px; font-weight:600; color: var(--primary)"></div>
+        <div id="wl-msg" style="margin-top:20px; font-weight:600;"></div>
       </div>
     </header>
 
-    <section id="roles">
-      <div class="section-title">
-        <h2 data-i18n="roles_title">Das Ökosystem für alle</h2>
-      </div>
+    <section>
+      <div class="section-title"><h2 data-i18n="roles_title">Das Ökosystem für alle</h2></div>
       <div class="grid">
         <div class="card">
-          <span class="icon">🧑‍💼</span>
-          <p class="badge">Kunde</p>
-          <h3 data-i18n="customer">Deine Adresse</h3>
-          <ul>
-            <li>Eigene exakte Adresse erhalten & teilen</li>
-            <li>Direkt bei lokalen Shops bestellen</li>
-            <li>Live-Tracking deiner Lieferungen</li>
-            <li>Kein Erklären des Weges mehr nötig</li>
+          <p class="badge" data-i18n="tag_customer">Kunde</p>
+          <h3 data-i18n="customer_title">Deine Adresse</h3>
+          <ul id="list-customer">
+            <li>Eigene Adresse teilen</li>
+            <li>Lokal bestellen</li>
+            <li>Live-Tracking</li>
           </ul>
         </div>
-
         <div class="card">
-          <span class="icon">📦</span>
-          <p class="badge">Fahrer</p>
-          <h3 data-i18n="driver">Effizienz</h3>
-          <ul>
-            <li>Navigation punktgenau zum Ziel</li>
-            <li>Mehr Aufträge in kürzerer Zeit</li>
-            <li>Keine Wartezeiten durch Sucherei</li>
+          <p class="badge" data-i18n="tag_driver">Fahrer</p>
+          <h3 data-i18n="driver_title">Effizienz</h3>
+          <ul id="list-driver">
+            <li>Punktgenaue Navigation</li>
+            <li>Mehr Aufträge</li>
+            <li>Keine Suche</li>
           </ul>
         </div>
-
         <div class="card">
-          <span class="icon">🏪</span>
-          <p class="badge">Shop</p>
-          <h3 data-i18n="seller">Sichtbarkeit</h3>
-          <ul>
-            <li>Digitale Adresse für deinen Standort</li>
-            <li>Automatisierte Abwicklung von Orders</li>
-            <li>Neue Kunden im direkten Umkreis</li>
+          <p class="badge" data-i18n="tag_shop">Shop</p>
+          <h3 data-i18n="shop_title">Sichtbarkeit</h3>
+          <ul id="list-shop">
+            <li>Digitale Adresse</li>
+            <li>Schnelle Abwicklung</li>
+            <li>Neue Kunden</li>
           </ul>
         </div>
-
         <div class="card">
-          <span class="icon">🏢</span>
-          <p class="badge">Hub</p>
-          <h3 data-i18n="hub">Provision</h3>
-          <ul>
-            <li>Geld verdienen pro Paket-Scan</li>
-            <li>Einfache Lager-Organisation</li>
-            <li>Zentrale für lokale Lieferungen</li>
+          <p class="badge" data-i18n="tag_hub">Hub</p>
+          <h3 data-i18n="hub_title">Provision</h3>
+          <ul id="list-hub">
+            <li>Geld pro Scan</li>
+            <li>Organisation</li>
+            <li>Paket-Zentrale</li>
           </ul>
         </div>
       </div>
@@ -180,54 +118,119 @@
 
     <div class="trust-banner">
       <h3 data-i18n="trust_title">Maximale Privatsphäre</h3>
-      <p>Deine Daten sind bei uns sicher. Wir teilen keine Informationen mit Behörden. Alles wird nach strengsten Regeln auf deutschen Servern verschlüsselt. 🛡️</p>
+      <p data-i18n="trust_text">Deine Daten sind sicher. Hosting in Deutschland, keine Weitergabe an Behörden.</p>
     </div>
 
     <footer>
-      <p>&copy; 2026 Lokale Liefer-App. Alle Rechte vorbehalten.</p>
-      <div class="germany-flag">
-        <span>🇩🇪</span> Deutsches Unternehmen & Hosting
-      </div>
+      <p data-i18n="footer">&copy; 2026 Lokale Liefer-App. Alle Rechte vorbehalten.</p>
     </footer>
   </div>
 
   <script>
-    let currentLang = 'de';
-    // Deine Google Sheets URL aus der Originaldatei
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyoTeMLlXXO3cNME2mjGnILCg-s5BXljgoSwR-CFeKBa5tPg0dJc7CCAyJTlGv7LN7E/exec";
+    const t = {
+      de: {
+        title: "Jeder bekommt eine genaue Adresse.",
+        lead: "Schluss mit unklaren Lieferorten. Wir geben jedem Nutzer, Shop und Fahrer eine präzise digitale Identität.",
+        cta: "Jetzt beitreten",
+        name_ph: "Vollständiger Name",
+        email_ph: "E-Mail-Adresse",
+        roles_title: "Das Ökosystem für alle",
+        tag_customer: "Kunde", customer_title: "Deine Adresse",
+        list_customer: ["Eigene exakte Adresse erhalten","Lokal über die App bestellen","Live-Tracking deiner Pakete","Kein Erklären des Weges mehr"],
+        tag_driver: "Fahrer", driver_title: "Effizienz",
+        list_driver: ["Punktgenaue Navigation","Mehr Aufträge pro Stunde","Keine Wartezeit durch Suche"],
+        tag_shop: "Shop", shop_title: "Sichtbarkeit",
+        list_shop: ["Digitale Adresse für den Standort","Automatisierte Orders","Mehr Kunden im Umkreis"],
+        tag_hub: "Hub", hub_title: "Provision",
+        list_hub: ["Geld verdienen pro Scan","Einfache Organisation","Zentrale Paketübergabe"],
+        trust_title: "Maximale Privatsphäre",
+        trust_text: "Deine Daten sind sicher. Hosting in Deutschland, keine Weitergabe an Behörden.",
+        footer: "© 2026 Lokale Liefer-App. Alle Rechte vorbehalten.",
+        sending: "Daten werden übertragen...",
+        success: "Erfolgreich! Willkommen auf der Warteliste."
+      },
+      en: {
+        title: "Everyone gets a precise address.",
+        lead: "No more unclear delivery locations. We give every user, shop, and driver a precise digital identity.",
+        cta: "Join now",
+        name_ph: "Full Name",
+        email_ph: "Email Address",
+        roles_title: "An ecosystem for everyone",
+        tag_customer: "Customer", customer_title: "Your Address",
+        list_customer: ["Get your own exact address","Order locally via app","Live tracking of packages","No more explaining directions"],
+        tag_driver: "Driver", driver_title: "Efficiency",
+        list_driver: ["Pinpoint navigation","More orders per hour","No time wasted searching"],
+        tag_shop: "Shop", shop_title: "Visibility",
+        list_shop: ["Digital address for location","Automated order processing","More local customers"],
+        tag_hub: "Hub", hub_title: "Commission",
+        list_hub: ["Earn money per scan","Simple organization","Central package handover"],
+        trust_title: "Maximum Privacy",
+        trust_text: "Your data is safe. Hosted in Germany, no sharing with authorities.",
+        footer: "© 2026 Local Delivery App. All rights reserved.",
+        sending: "Sending data...",
+        success: "Success! Welcome to the waitlist."
+      },
+      sw: {
+        title: "Kila mtu anapata anwani sahihi.",
+        lead: "Hakuna tena maeneo yasiyo wazi ya utoaji. Tunampa kila mtumiaji, duka, na dereva utambulisho sahihi wa kidijitali.",
+        cta: "Jiunge sasa",
+        name_ph: "Jina Kamili",
+        email_ph: "Barua Pepe",
+        roles_title: "Mfumo kwa kila mtu",
+        tag_customer: "Mteja", customer_title: "Anwani Yako",
+        list_customer: ["Pata anwani yako sahihi","Agiza bidhaa kupitia programu","Fuatilia kifurushi chako mubashara","Hakuna kuelekeza njia tena"],
+        tag_driver: "Dereva", driver_title: "Ufanisi",
+        list_driver: ["Urambazaji sahihi kabisa","Oda nyingi zaidi kwa saa","Hakuna kupoteza muda kutafuta"],
+        tag_shop: "Duka", shop_title: "Uonekano",
+        list_shop: ["Anwani ya kidijitali ya duka","Ushughulikiaji wa oda otomatiki","Wateja wengi zaidi wa karibu"],
+        tag_hub: "Hub", hub_title: "Kamisheni",
+        list_hub: ["Pata pesa kwa kila scan","Usimamizi rahisi","Kituo cha makabidhiano"],
+        trust_title: "Faragha ya Juu",
+        trust_text: "Data zako ziko salama. Seva ziko Ujerumani, hazishirikishwi na serikali.",
+        footer: "© 2026 Programu ya Utoaji. Haki zote zimehifadhiwa.",
+        sending: "Inatuma data...",
+        success: "Imefaulu! Karibu kwenye orodha."
+      }
+    };
 
     function setLang(l) {
-      currentLang = l;
+      const data = t[l];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if(data[key]) el.innerText = data[key];
+      });
+      document.getElementById('field-name').placeholder = data.name_ph;
+      document.getElementById('field-email').placeholder = data.email_ph;
+      
+      const updateList = (id, items) => {
+        const el = document.getElementById(id);
+        el.innerHTML = items.map(i => `<li>${i}</li>`).join('');
+      };
+      updateList('list-customer', data.list_customer);
+      updateList('list-driver', data.list_driver);
+      updateList('list-shop', data.list_shop);
+      updateList('list-hub', data.list_hub);
+
       document.querySelectorAll('.lang-switcher button').forEach(b => b.classList.remove('active'));
       document.getElementById('btn-' + l).classList.add('active');
-      // Hier können weitere Übersetzungs-Logiken (t-Objekt) ergänzt werden
+      window.currentLang = l;
     }
+
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyoTeMLlXXO3cNME2mjGnILCg-s5BXljgoSwR-CFeKBa5tPg0dJc7CCAyJTlGv7LN7E/exec";
+    window.currentLang = 'de';
 
     document.getElementById('waitlistForm').addEventListener('submit', async function(e){
       e.preventDefault();
       const msg = document.getElementById('wl-msg');
-      msg.innerText = 'Daten werden sicher übertragen...';
-
+      msg.innerText = t[window.currentLang].sending;
       try {
-        // Fetch-Aufruf an dein Google Apps Script
         await fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors', 
-          body: JSON.stringify({ 
-            name: this.name.value, 
-            email: this.email.value, 
-            language: currentLang,
-            timestamp: new Date().toISOString()
-          })
+          method: 'POST', mode: 'no-cors',
+          body: JSON.stringify({ name: this.name.value, email: this.email.value, language: window.currentLang })
         });
-        
-        msg.innerText = 'Erfolgreich! Willkommen auf der Warteliste.';
-        msg.style.color = 'var(--primary)';
+        msg.innerText = t[window.currentLang].success;
         this.reset();
-      } catch(err) {
-        msg.innerText = 'Verbindungsfehler. Bitte versuche es erneut.';
-        msg.style.color = '#e53e3e';
-      }
+      } catch(err) { msg.innerText = "Error / Makosa / Fehler"; }
     });
   </script>
 </body>
